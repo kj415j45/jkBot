@@ -1,0 +1,5 @@
+top -d 0.5 -b -n2 | grep "Cpu(s)"|tail -n 1 | awk '{printf "CPU: " $2 + $4 "%\n"}'
+free -m | awk 'NR==2{printf "Memory: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
+uptime | awk '{printf "Load: " $10 $11 $12"\n"}'
+df -h | awk '$NF=="/"{printf "Disk: %d/%dGB (%s)\n", $3,$2,$5}'
+uptime | awk -F'( |,)+' '{printf "Uptime: "$4" "$5", "$6}'
